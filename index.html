@@ -1,62 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人狼ゲーム GM ツール</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-4">
+  <h1 class="text-3xl font-bold mb-4">人狼ゲーム GM ツール</h1>
 
+  <!-- GM Login -->
+  <div id="gmLogin" class="w-full max-w-md bg-white p-6 rounded-lg shadow-md mb-4">
+    <h2 class="text-xl font-semibold mb-2">GM ログイン</h2>
+    <button onclick="loginAsGM()" class="w-full bg-purple-500 text-white p-2 rounded hover:bg-purple-600">GMとしてログイン</button>
+  </div>
 
+  <!-- Player Login -->
+  <div id="playerLogin" class="w-full max-w-md bg-white p-6 rounded-lg shadow-md mb-4">
+    <h2 class="text-xl font-semibold mb-2">プレイヤーログイン</h2>
+    <input id="playerName" type="text" placeholder="あなたの名前" class="w-full p-2 mb-2 border rounded">
+    <button onclick="loginAsPlayer()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">ログイン</button>
+  </div>
 
-  
-  
-  人狼ゲーム GM ツール
-  
+  <!-- GM Setup -->
+  <div id="gmSetup" class="w-full max-w-md bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+    <h2 class="text-xl font-semibold mb-2">プレイヤー設定</h2>
+    <input id="playerInput" type="text" placeholder="例: 太郎, 花子, 次郎, 健太" class="w-full p-2 mb-2 border rounded">
+    <input id="werewolfCount" type="number" min="1" placeholder="人狼の数 (プレイヤー数の半分以下)" class="w-full p-2 mb-2 border rounded">
+    <input id="seerCount" type="number" min="0" placeholder="占い師の数 (0 or 1)" class="w-full p-2 mb-2 border rounded">
+    <button onclick="setupGame()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">ゲーム開始</button>
+  </div>
 
+  <!-- GM Control -->
+  <div id="gmControl" class="w-full max-w-md bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+    <h2 class="text-xl font-semibold mb-2">GM コントロール</h2>
+    <p id="gmPhase" class="mb-2"></p>
+    <p id="gmPlayers" class="mb-2"></p>
+    <p id="gmTimer" class="mb-2"></p>
+    <button onclick="startDiscussion()" class="bg-green-500 text-white p-2 rounded hover:bg-green-600 mr-2">議論開始</button>
+    <button onclick="startNight()" class="bg-red-500 text-white p-2 rounded hover:bg-red-600">夜フェーズ</button>
+  </div>
 
-  人狼ゲーム GM ツール
+  <!-- Player Action -->
+  <div id="playerAction" class="w-full max-w-md bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+    <h2 class="text-xl font-semibold mb-2">プレイヤーアクション</h2>
+    <p id="playerRole" class="mb-2"></p>
+    <p id="playerPhase" class="mb-2"></p>
+    <select id="actionTarget" class="w-full p-2 mb-2 border rounded hidden"></select>
+    <button id="actionButton" onclick="submitAction()" class="bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600 hidden">アクション実行</button>
+  </div>
 
-  
-  
-    GM ログイン
-    GMとしてログイン
-  
+  <!-- Game Log -->
+  <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-2">ゲームログ</h2>
+    <ul id="log" class="list-disc pl-5"></ul>
+  </div>
 
-  
-  
-    プレイヤーログイン
-    
-    ログイン
-  
-
-  
-  
-    プレイヤー設定
-    
-    
-    
-    ゲーム開始
-  
-
-  
-  
-    GM コントロール
-    
-    
-    
-    議論開始
-    夜フェーズ
-  
-
-  
-  
-    プレイヤーアクション
-    
-    
-    
-    アクション実行
-  
-
-  
-  
-    ゲームログ
-    
-  
-
-  
+  <script>
     let players = [];
     let werewolves = [];
     let seers = [];
@@ -288,5 +288,6 @@
       const secs = seconds % 60;
       return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
     }
-  
-
+  </script>
+</body>
+</html>
